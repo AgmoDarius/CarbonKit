@@ -157,7 +157,9 @@
 #pragma mark - Actions
 
 - (void)segmentedTapped:(CarbonTabSwipeSegmentedControl *)segment {
-    [self moveToIndex:segment.selectedSegmentIndex withAnimation:YES];
+  	//Agmo Darius - custom fix tab bar not clickable after switching tabs.
+  BOOL animate = ([self viewControllerAtIndex:self.currentTabIndex] != [self.pageViewController.viewControllers firstObject]);
+  [self moveToIndex:segment.selectedSegmentIndex withAnimation:animate];
 }
 
 - (void)moveToIndex:(NSUInteger)index withAnimation:(BOOL)animate {
